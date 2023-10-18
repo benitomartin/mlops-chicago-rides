@@ -164,3 +164,4 @@ training_outputs
 data/raw
 src/interface/mlflow.db
 src/interface/mlruns
+.env.yaml
