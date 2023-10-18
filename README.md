@@ -65,7 +65,7 @@ For the distance preprocessing, the first approach was to plot the pickup and dr
     <img src="/images/distance_map.png"/>
     </p>
 
-<p>
+<p align="center">
     <img src="/images/dist_hist.png"/>
     </p>
 
@@ -73,7 +73,7 @@ It can be seen that the distance distribution is heavily concentrated in the fir
 
 For the time preprocessing, the idea was to extract the hour/day/month and separate features and encode them. The hours were previously divided in sine and cosine.
 
-<p>
+<p align="center">
     <img src="/images/time_features.png"/>
     </p>
 
