@@ -53,13 +53,13 @@ The dataset was obtained from BigQuery and contains 200 million rows and various
     </p>
 
 
-As the number of rows is too big and environmental variable was set up to decide how many rows to query. However, the prices distribution for the first 1 million rows shows a big concentration in the first 100 USD. In order to detect outliers, the `z-score` is calculated for each query, so that the outliers are removed depending on the number of rows downloaded.
+As the number of rows is too big and environmental variable (`DATA_SIZE`) was set up to decide how many rows to query. However, the prices distribution for the first 1 million rows shows a big concentration in the first 100 USD. In order to detect outliers, the `z-score` is calculated for each query, so that the outliers are removed depending on the number of rows downloaded.
 
 <p>
     <img src="/images/clean_prices.png"/>
     </p>
 
-For the distance preprocessing, the first approach was to plot the pickup and drop off locations on a map and histogram (from the data w/o outliers), to see the distribution.
+For the distance preprocessing, the first approach was to plot the pickup and drop off locations on a map and histogram (excluding outliers), to see the distribution.
 
 <p>
     <img src="/images/distance_map.png"/>
@@ -83,7 +83,7 @@ Subsequently, a **Neural Network Model** was performed with several Dense, Batch
     <img src="/images/prediction.png"/>
     </p>
 
-Afterward, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
+Afterwards, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
 
 In order to train a model, the file `main.py` in the src/interface folder must be run. This will log the models in MLflow and allow registration and model transition from "None" to "Staging" and "Production" stages. These options can be set up in the file `registry.py` in the src/ml_logic folder. Additionally, the environmental variable MODEL_TARGET must be set either to "local" or "gcs", so that the model is saved wither locally or in a GCS Bucket.
  
@@ -95,7 +95,7 @@ Once a model is saved/registered, the `workflow.py` file in the src/interface fo
 
 To run Prefect and MLflow the following commands must be run in the terminal from the src/interface directory, to see the logs:
 
-- MLFlow:
+- MLF
 
 ```bash
 mlflow ui --backend-store-uri sqlite:///mlflow.db
@@ -127,7 +127,7 @@ Having a model saved and in production, the `fast.py` file can be run to get a p
 
 ### Prediction API
 
-To run the prediction API run this and check the results here (`http://127.0.0.1:8000/predict`):
+To run the prediction API run this and check the results here http://127.0.0.1:8000/predict:
 
 ```bash
 uvicorn src.api.fast:app --reload
@@ -135,7 +135,7 @@ uvicorn src.api.fast:app --reload
 
 ### Dockerimage
 
-To run the Dockerimage build it and check the results here (`http://127.0.0.1:8000/predict`):
+To run the Dockerimage build it and check the results here http://127.0.0.1:8000/predict:
 
 ```bash
 docker build --tag=image .
