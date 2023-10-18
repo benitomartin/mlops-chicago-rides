@@ -87,7 +87,11 @@ Subsequently, a **Neural Network Model** was performed with several Dense, Batch
 
 Afterwards, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
 
-In order to train a model, the file `main.py` in the src/interface folder must be run. This will log the models in MLflow and allow registration and model transition from "None" to "Staging" and "Production" stages. These options can be set up in the file `registry.py` in the src/ml_logic folder. Additionally, the environmental variable MODEL_TARGET must be set either to "local" or "gcs", so that the model is saved wither locally or in a GCS Bucket.
+In order to train a model, the file `main.py` in the src/interface folder must be run. This will log the models in MLflow and allow registration and model transition from "None" to "Staging" and "Production" stages. These options can be set up in the file `registry.py` in the src/ml_logic folder. Additionally, the environmental variable MODEL_TARGET must be set either to "local" or "gcs", so that the model is saved either locally or in a GCS Bucket.
+
+<p>
+    <img src="/images/mlflowgc.png"/>
+    </p>
  
 Once a model is saved/registered, the `workflow.py` file in the src/interface folder allows a Prefect workflow to predict new data with the saved model and train a new model with these data to compare the results. If the MAE of the new model is lower, this model can be sent to the production stage and the old model will be archived.
 
