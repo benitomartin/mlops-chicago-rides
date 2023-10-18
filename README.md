@@ -4,9 +4,7 @@
     <img src="/images/taxi.jpg"/>
     </p>
 
-This is a personal MLOps project based on a [BigQuery](https://console.cloud.google.com/marketplace/product/city-of-chicago-public-data/chicago-taxi-trips?project=taxifare-mlops) dataset for taxi ride prices in Chicago.
-
-Below you can find some instructions to understand the project content. Feel free to clone this repo 😉
+This is a personal MLOps project based on a [BigQuery](https://console.cloud.google.com/marketplace/product/city-of-chicago-public-data/chicago-taxi-trips?project=taxifare-mlops) dataset for taxi ride prices in Chicago. Below you can find some instructions to understand the project content. Feel free to clone this repo 😉
 
 
 ## Tech Stack
@@ -47,28 +45,28 @@ The project has been structured with the following folders and files:
 The dataset was obtained from BigQuery and contains 200 million rows and various columns from which the following where selected for this project: prices, pick up and drop off locations, and timestamps. To prepare the data for modelling, an **Exploratory Data Analysis** was conducted to preprocess time and distance features, and suitable scalers and encoders were chosen for the preprocessing pipeline.
 
 <p>
-    <img src="/images/prices_distribution.jpg"/>
+    <img src="/images/prices_distribution.png"/>
     </p>
 
 <p>
-    <img src="/images/prices_distribution2.jpg"/>
+    <img src="/images/prices_distribution2.png"/>
     </p>
 
 
 As the number of rows is too big and environmental variable was set up to decide how many rows to query. However, the prices distribution for the first 1 million rows shows a big concentration in the first 100 USD. In order to detect outliers, the `z-score` is calculated for each query, so that the outliers are removed depending on the number of rows downloaded.
 
 <p>
-    <img src="/images/clean_prices.jpg"/>
+    <img src="/images/clean_prices.png"/>
     </p>
 
 For the distance preprocessing, the first approach was to plot the pickup and drop off locations on a map and histogram (from the data w/o outliers), to see the distribution.
 
 <p>
-    <img src="/images/distance_map.jpg"/>
+    <img src="/images/distance_map.png"/>
     </p>
 
 <p>
-    <img src="/images/dist_hist.jpg"/>
+    <img src="/images/dist_hist.png"/>
     </p>
 
 It can be seen that the distance distribution is heavily concentrated in the first 10 km till 50 km. The preprocessing approach was to calculate the Manhattan Distance or each ride and encode it.
@@ -76,13 +74,13 @@ It can be seen that the distance distribution is heavily concentrated in the fir
 For the time preprocessing, the idea was to extract the hour/day/month and separate features and encode them. The hours were previously divided in sine and cosine.
 
 <p>
-    <img src="/images/time_features.jpg"/>
+    <img src="/images/time_features.png"/>
     </p>
 
 Subsequently, a **Neural Network Model** was performed with several Dense, BatchNormalization and Dropout layers. The results showed a MAE of around 3 USD from an average price of 20 USD. However, the price prediction for rides above 10 USD show a higher accuracy compared to rides up to 10 USD.
 
 <p>
-    <img src="/images/prediction.jpg"/>
+    <img src="/images/prediction.png"/>
     </p>
 
 Afterward, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
@@ -92,7 +90,7 @@ In order to train a model, the file `main.py` in the src/interface folder must b
 Once a model is saved/registered, the `workflow.py` file in the src/interface folder allows a Prefect workflow to predict new data with the saved model and train a new model with these data to compare the results. If the MAE of the new model is lower, this model can be sent to the production stage and the old model will be archived.
 
 <p>
-    <img src="/images/prefect_flow.jpg"/>
+    <img src="/images/prefect_flow.png"/>
     </p>
 
 To run Prefect and MLflow the following commands must be run in the terminal from the src/interface directory, to see the logs:
@@ -119,7 +117,7 @@ prefect cloud login
 Having a model saved and in production, the `fast.py` file can be run to get a prediction. This can be done either locally running a prediction API, building a Dockerfile or pushing the Dockerfile to a Docker container in Google Cloud Run to get a service URL.
 
 <p>
-    <img src="/images/uvicorn.jpg"/>
+    <img src="/images/uvicorn.png"/>
     </p>
  
 
