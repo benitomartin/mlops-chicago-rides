@@ -39,6 +39,8 @@ The project has been structured with the following folders and files:
 
 - `requirements.txt:` project requirements
 - `Dockerfile`: docker image for deployment
+- `.env.sample`: sample file of environmental variables
+- `.env.sample.yaml`: sample file of environmental variables for Dockerfile deployment
 
 ## Project Description
 
@@ -127,7 +129,7 @@ Having a model saved and in production, the `fast.py` file can be run to get a p
 
 ### Prediction API
 
-To run the prediction API run this and check the results here http://127.0.0.1:8000/predict:
+To run the prediction API run this from the project root directory and check the results here http://127.0.0.1:8000/predict:
 
 ```bash
 uvicorn src.api.fast:app --reload
