@@ -120,6 +120,10 @@ Having a model saved and in production, the `fast.py` file can be run to get a p
     <img src="/images/uvicorn.png"/>
     </p>
  
+<p>
+    <img src="/images/uvicorn2.png"/>
+    </p>
+ 
 
 ### Prediction API
 
