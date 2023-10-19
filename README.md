@@ -1,4 +1,4 @@
-# MLOps Project Chicago Taxi Prices Prediction
+# MLOps Project Chicago Taxi Prices Prediction 🚕
 
 <p>
     <img src="/images/taxi.jpg"/>
