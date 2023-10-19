@@ -59,7 +59,7 @@ The following two charts show the fare distribution of the rides. As the number 
     </p>
 
 
- In order to detect outliers, the `z-score` is calculated for each query, so that the outliers are removed depending on the number of rows downloaded. The following chart represents the fare distribution adter removing outliers.
+ In order to detect outliers, the `z-score` is calculated for each query, so that the outliers are removed depending on the number of rows downloaded. The following chart represents the fare distribution after removing outliers.
 
 <p>
     <img src="/images/clean_prices.png"/>
