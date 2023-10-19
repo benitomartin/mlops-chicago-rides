@@ -46,6 +46,10 @@ The project has been structured with the following folders and files:
 
 The dataset was obtained from BigQuery and contains 200 million rows and various columns from which the following where selected for this project: prices, pick up and drop off locations, and timestamps. To prepare the data for modelling, an **Exploratory Data Analysis** was conducted to preprocess time and distance features, and suitable scalers and encoders were chosen for the preprocessing pipeline.
 
+### Fare Distribution
+
+The following two charts show the fare distribution of the rides. As the number of rows is too big and environmental variable (`DATA_SIZE`) was set up to decide how many rows to query. However, the prices distribution for the first 1 million rows shows a big concentration in the first 100 USD.
+
 <p>
     <img src="/images/prices_distribution.png"/>
     </p>
@@ -55,11 +59,13 @@ The dataset was obtained from BigQuery and contains 200 million rows and various
     </p>
 
 
-As the number of rows is too big and environmental variable (`DATA_SIZE`) was set up to decide how many rows to query. However, the prices distribution for the first 1 million rows shows a big concentration in the first 100 USD. In order to detect outliers, the `z-score` is calculated for each query, so that the outliers are removed depending on the number of rows downloaded.
+ In order to detect outliers, the `z-score` is calculated for each query, so that the outliers are removed depending on the number of rows downloaded. The following chart represents the fare distribution adter removing outliers.
 
 <p>
     <img src="/images/clean_prices.png"/>
     </p>
+
+### Distance Distribution
 
 For the distance preprocessing, the first approach was to plot the pickup and drop off locations on a map and histogram (excluding outliers), to see the distribution.
 
@@ -73,6 +79,8 @@ For the distance preprocessing, the first approach was to plot the pickup and dr
 
 It can be seen that the distance distribution is heavily concentrated in the first 10 km till 50 km. The preprocessing approach was to calculate the `Manhattan` and `Haversine` distance or each ride and encode it.
 
+### Time Distribution
+
 For the time preprocessing, the idea was to extract the hour/day/month and separate features and encode them. The hours were previously divided in sine and cosine.
 
 <p align="center">
@@ -84,6 +92,8 @@ Subsequently, a **Neural Network Model** was performed with several Dense, Batch
 <p>
     <img src="/images/prediction.png"/>
     </p>
+
+### Modelling
 
 Afterwards, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
 
@@ -129,9 +139,10 @@ Having a model saved and in production, the `fast.py` file can be run to get a p
 <p>
     <img src="/images/uvicorn2.png"/>
     </p>
- 
 
-### Prediction API
+### Deployment 
+
+#### Prediction API
 
 To run the prediction API run this from the project root directory and check the results here http://127.0.0.1:8000/predict:
 
@@ -139,7 +150,7 @@ To run the prediction API run this from the project root directory and check the
 uvicorn src.api.fast:app --reload
 ```
 
-### Dockerimage
+#### Dockerimage
 
 To run the Dockerimage build it and check the results here http://127.0.0.1:8000/predict:
 
@@ -148,7 +159,7 @@ docker build --tag=image .
 docker run -it -e PORT=8000 -p 8000:8000 --env-file your/path/to/.env image
 ```
 
-### Dockerimage in Google Cloud
+#### Dockerimage in Google Cloud
 
 To get a service URL, first build the image:
 
