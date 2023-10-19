@@ -32,7 +32,7 @@ The project has been structured with the following folders and files:
 
 - `images:` images from results
 - `notebooks:` EDA and Modelling performed at the beginning of the project to establish a baseline
-- `src:` source code. It is divided in:
+- `src:` source code. It is divided into:
     - `api`: FastApi app code
     - `interface`: main workflows
     - `ml_logic`: data/preprocessing/modelling functions
@@ -44,11 +44,11 @@ The project has been structured with the following folders and files:
 
 ## Project Description
 
-The dataset was obtained from BigQuery and contains 200 million rows and various columns from which the following where selected for this project: prices, pick up and drop off locations, and timestamps. To prepare the data for modelling, an **Exploratory Data Analysis** was conducted to preprocess time and distance features, and suitable scalers and encoders were chosen for the preprocessing pipeline.
+The dataset was obtained from BigQuery and contains 200 million rows and various columns from which the following were selected for this project: prices, pick-up and drop-off locations, and timestamps. To prepare the data for modelling, an **Exploratory Data Analysis** was conducted to preprocess time and distance features, and suitable scalers and encoders were chosen for the preprocessing pipeline.
 
 ### Fare Distribution
 
-The following two charts show the fare distribution of the rides. As the number of rows is too big and environmental variable (`DATA_SIZE`) was set up to decide how many rows to query. However, the prices distribution for the first 1 million rows shows a big concentration in the first 100 USD.
+The following two charts show the fare distribution of the rides. As the number of rows is too big an environmental variable (`DATA_SIZE`) was set up to decide how many rows to query. However, the price distribution for the first 1 million rows shows a big concentration in the first 100 USD.
 
 <p>
     <img src="/images/prices_distribution.png"/>
@@ -67,7 +67,7 @@ The following two charts show the fare distribution of the rides. As the number 
 
 ### Distance Distribution
 
-For the distance preprocessing, the first approach was to plot the pickup and drop off locations on a map and histogram (excluding outliers), to see the distribution.
+For the distance preprocessing, the first approach was to plot the pickup and drop-off locations on a map and histogram (excluding outliers), to see the distribution.
 
 <p>
     <img src="/images/distance_map.png"/>
@@ -77,23 +77,23 @@ For the distance preprocessing, the first approach was to plot the pickup and dr
     <img src="/images/dist_hist.png"/>
     </p>
 
-It can be seen that the distance distribution is heavily concentrated in the first 10 km till 50 km. The preprocessing approach was to calculate the `Manhattan` and `Haversine` distance or each ride and encode it.
+It can be seen that the distance distribution is heavily concentrated in the first 10 km to 50 km. The preprocessing approach was to calculate the `Manhattan` and `Haversine` distance for each ride and encode it.
 
 ### Time Distribution
 
-For the time preprocessing, the idea was to extract the hour/day/month and separate features and encode them. The hours were previously divided in sine and cosine.
+For the time preprocessing, the idea was to extract the hour/day/month and separate features and encode them. The hours were previously divided into sine and cosine.
 
 <p align="center">
     <img src="/images/time_features.png"/>
     </p>
 
-Subsequently, a **Neural Network Model** was performed with several Dense, BatchNormalization and Dropout layers. The results showed a MAE of around 3 USD from an average price of 20 USD. However, the price prediction for rides above 10 USD show a higher accuracy compared to rides up to 10 USD.
+Subsequently, a **Neural Network Model** was performed with several Dense, BatchNormalization and Dropout layers. The results showed a MAE of around 3 USD from an average price of 20 USD. However, the price prediction for rides above 10 USD shows a higher accuracy compared to rides up to 10 USD.
 
 <p>
     <img src="/images/prediction.png"/>
     </p>
 
-Afterwards, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
+Afterwards, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to a Google Container Registry and deployed in Google Cloud Run.
 
 
 ### Modelling
@@ -133,7 +133,7 @@ prefect cloud login
 
 ### Deployment 
 
-Having a model saved and in production, the `fast.py` file can be run to get a prediction. This can be done either locally running a prediction API, building a Dockerfile or pushing the Dockerfile to a Docker container in Google Cloud Run to get a service URL.
+Having a model saved and in production, the `fast.py` file can be run to get a prediction. This can be done either locally by running a prediction API, building a Dockerfile, or pushing the Dockerfile to a Docker container in Google Cloud Run to get a service URL.
 
 <p>
     <img src="/images/uvicorn.png"/>
