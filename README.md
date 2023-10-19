@@ -101,7 +101,7 @@ Once a model is saved/registered, the `workflow.py` file in the src/interface fo
 
 To run Prefect and MLflow the following commands must be run in the terminal from the src/interface directory, to see the logs:
 
-- MLFlow
+- MLFlow:
 
 ```bash
 mlflow ui --backend-store-uri sqlite:///mlflow.db
