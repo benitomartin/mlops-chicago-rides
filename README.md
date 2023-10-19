@@ -93,9 +93,10 @@ Subsequently, a **Neural Network Model** was performed with several Dense, Batch
     <img src="/images/prediction.png"/>
     </p>
 
-### Modelling
-
 Afterwards, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
+
+
+### Modelling
 
 In order to train a model, the file `main.py` in the src/interface folder must be run. This will log the models in MLflow and allow registration and model transition from *None* to *Staging* and *Production* stages. These options can be set up in the file `registry.py` in the src/ml_logic folder. Additionally, the environmental variable `MODEL_TARGET` must be set either to *local* or *gcs*, so that the model is saved either locally or in a GCS Bucket.
 
