@@ -124,7 +124,7 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db
 prefect cloud login
 ```
 
-- Prefect locally: 
+- Prefect (locally): 
 
     ```bash
     prefect server
