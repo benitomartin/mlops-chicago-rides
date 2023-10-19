@@ -71,7 +71,7 @@ For the distance preprocessing, the first approach was to plot the pickup and dr
     <img src="/images/dist_hist.png"/>
     </p>
 
-It can be seen that the distance distribution is heavily concentrated in the first 10 km till 50 km. The preprocessing approach was to calculate the Manhattan Distance or each ride and encode it.
+It can be seen that the distance distribution is heavily concentrated in the first 10 km till 50 km. The preprocessing approach was to calculate the `Manhattan` and `Haversine` distance or each ride and encode it.
 
 For the time preprocessing, the idea was to extract the hour/day/month and separate features and encode them. The hours were previously divided in sine and cosine.
 
@@ -87,7 +87,7 @@ Subsequently, a **Neural Network Model** was performed with several Dense, Batch
 
 Afterwards, the models underwent model registry, and deployment using MLflow, Prefect, and FasApi. The Dockerimage was pushed to Google Container Registry and deployed in Google Cloud Run.
 
-In order to train a model, the file `main.py` in the src/interface folder must be run. This will log the models in MLflow and allow registration and model transition from "None" to "Staging" and "Production" stages. These options can be set up in the file `registry.py` in the src/ml_logic folder. Additionally, the environmental variable MODEL_TARGET must be set either to "local" or "gcs", so that the model is saved either locally or in a GCS Bucket.
+In order to train a model, the file `main.py` in the src/interface folder must be run. This will log the models in MLflow and allow registration and model transition from *None* to *Staging* and *Production* stages. These options can be set up in the file `registry.py` in the src/ml_logic folder. Additionally, the environmental variable `MODEL_TARGET` must be set either to *local* or *gcs*, so that the model is saved either locally or in a GCS Bucket.
 
 <p>
     <img src="/images/mlflowgc.png"/>
@@ -101,7 +101,7 @@ Once a model is saved/registered, the `workflow.py` file in the src/interface fo
 
 To run Prefect and MLflow the following commands must be run in the terminal from the src/interface directory, to see the logs:
 
-- MLF
+- MLFlow
 
 ```bash
 mlflow ui --backend-store-uri sqlite:///mlflow.db
