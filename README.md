@@ -131,6 +131,8 @@ prefect cloud login
     prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
     ```
 
+### Deployment 
+
 Having a model saved and in production, the `fast.py` file can be run to get a prediction. This can be done either locally running a prediction API, building a Dockerfile or pushing the Dockerfile to a Docker container in Google Cloud Run to get a service URL.
 
 <p>
@@ -141,7 +143,6 @@ Having a model saved and in production, the `fast.py` file can be run to get a p
     <img src="/images/uvicorn2.png"/>
     </p>
 
-### Deployment 
 
 #### Prediction API
 
