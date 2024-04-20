@@ -4,7 +4,7 @@
     <img src="/images/taxi.jpg"/>
     </p>
 
-This is a personal MLOps project based on a [BigQuery](https://console.cloud.google.com/marketplace/product/city-of-chicago-public-data/chicago-taxi-trips?project=taxifare-mlops) dataset for taxi ride prices in Chicago. Below you can find some instructions to understand the project content. Feel free to clone this repo 😉
+This is a personal MLOps project based on a [BigQuery](https://console.cloud.google.com/marketplace/product/city-of-chicago-public-data/chicago-taxi-trips?project=taxifare-mlops) dataset for taxi ride prices in Chicago. Below you can find some instructions to understand the project content. Feel free to ⭐ and clone this repo 😉
 
 
 ## Tech Stack
